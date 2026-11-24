@@ -13,7 +13,7 @@ judge compares entries two at a time through private blind rounds.
 
 > I'm out of office until Monday. I read your email the second it arrived. I'll reply on Monday as if I hadn't.
 
-110 characters, one line. It keeps the shape of a real out-of-office reply a
+109 characters, one line. It keeps the shape of a real out-of-office reply a
 person would actually set (away until Monday, reply on Monday), then confesses
 the one thing every sender does and no auto-reply admits: he already read the
 email the second it arrived. The closing beat, "as if I hadn't", turns the

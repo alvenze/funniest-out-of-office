@@ -39,10 +39,18 @@ def main() -> int:
     # Verify what actually landed on disk, not just what we meant to write:
     # the gate scores the file, so re-check the file content (minus the
     # single trailing newline the writer adds).
-    with open(path, "r", encoding="utf-8", newline="") as f:
-        written = f.read()
-    gate_check(written[:-1] if written.endswith("\n") else written)
-    print(f"wrote {path} ({len(REPLY)} characters, verified)")
+    with open(path, "rb") as f:
+        raw = f.read()
+    # The file on disk must be exactly the reply plus its trailing newline,
+    # byte for byte: the gate measures the file, and the leaderboard's Size
+    # column counts its bytes, so verify bytes, not just decoded text.
+    expected = (REPLY + "\n").encode("utf-8")
+    if raw != expected:
+        raise ValueError(f"file on disk differs from the reply: {raw!r}")
+    gate_check(raw.decode("utf-8")[:-1])
+    print(
+        f"wrote {path} ({len(REPLY)} characters, {len(raw)} bytes, verified)"
+    )
     return 0
 
 
